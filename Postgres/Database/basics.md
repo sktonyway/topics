@@ -57,3 +57,20 @@ Remeber these before creating a table:
 ### Row / Record
 ### Primary key
 
+```bash
+# Using docker container
+# starts docker container with name my-postgres
+docker run --name my-postgres -e POSTGRES_PASSWORD=mysecretpassword -d postgres
+
+# open postres container on my bash
+docker exec -it my-postgres bash
+
+# starting psql
+psql -U postgres
+
+# list all databases
+\l 
+CREATE DATABASE dummy;
+\c dummy;
+```
+#### Now [CRUD](./crud.md) can be performed using CLI.
