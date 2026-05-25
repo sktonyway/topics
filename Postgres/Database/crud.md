@@ -27,7 +27,7 @@ CREATE TABLE users(
     id          SERIAL PRIMARY KEY,
     name        VARCHAR(100) NOT NULL,
     email       VARCHAR(150) UNIQUE NOT NULL,
-    role        VARCHAR(150) NOT NULL CHECK (role IN ('student', 'proffessor', 'admin')),
+    role        VARCHAR(150) NOT NULL CHECK (role IN ('student', 'professor', 'admin')),
     department_id INT REFERENCES departments(id) ON DELETE SET NULL,
     metadata     JSONB,
     is_active    BOOLEAN DEFAULT TRUE,
@@ -53,3 +53,27 @@ Importing from CSV files
 ```sql
 \copy departments(id, name) FROM '/absolute/path/to/departments.csv' WITH DELIMITER ',' CSV HEADER;
 ```
+
+
+## Select [Read]
+It asks the database a question (query) and fetches specific data from your tables.
+\
+```*``` It is for everything.
+```sql
+SELECT name, email, role from users;
+SELECT name AS "Full Name", created_at AS "Joined On",role as Profession from users;
+
+SELECT DISTINCT role FROM users; -- It query unique roles
+SELECT * FROM users where role = 'professor';
+SELECT CONCAT('Mr. ', name) AS "Full Name" FROM users;
+SELECT 'Profile: ' || role || ' - ' || name AS "User Badge" FROM users;
+-- It prints 'Profile: student - Sk Tonyway'
+```
+### Note
+
+|Quote Type | Purpose | Example| 
+| - | - | - |
+Single Quote (') | String Literals (Data/values)| 'Hello World' |
+| Double Quote  (") | Identifiers (Tables/Columns) | "Users", "First Name"
+
+We can use BODMAS in SELECT statements.
