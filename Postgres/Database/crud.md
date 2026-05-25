@@ -1,5 +1,5 @@
 # CRUD Operations
-## Insert [Create]
+## INSERT [Create]
 ```sql
 -- Ensure users table exist
 INSERT INTO users (name, email) 
@@ -55,7 +55,7 @@ Importing from CSV files
 ```
 
 
-## Select [Read]
+## SELECT [Read]
 It asks the database a question (query) and fetches specific data from your tables.
 \
 ```*``` It is for everything.
@@ -77,3 +77,37 @@ Single Quote (') | String Literals (Data/values)| 'Hello World' |
 | Double Quote  (") | Identifiers (Tables/Columns) | "Users", "First Name"
 
 We can use BODMAS in SELECT statements.
+
+
+## UPDATE [Update]
+```UPDATE``` to modify database.
+\
+```SET``` tells the database exactly what to update.
+\
+```WHERE``` tells, which rows to affect. Without using *where*, it may affect entire table. 🚨 Use it wisely.
+
+```sql
+UPDATE users 
+SET name = CONCAT('Dr. ', name)
+WHERE role = 'professor' 
+RETURNING name, role; -- It returns updated value
+```
+
+## DELETE [Delete]
+
+We do delete users from database and sometimes we just hide them using ```trash : true```, i.e., soft delete and it doesn't follow **GDPR compliance**.
+\
+```DELETE``` deletes row by row from Disk, slow for massive deletion.
+\
+```TRUNCATE``` instantly empties i.e, lightning faster.
+
+```sql
+DELETE FROM users
+WHERE is_active = false;
+
+TRUNCATE TABLE departments;
+```
+
+### Note
+- ```WHERE``` is critical, without it may affect entire db table.
+- ```TRUNCATE``` is also critical, it drops table.
