@@ -50,3 +50,28 @@ db.inspections.find(
   { date: 0, "address.zip": 0 }
 )
 ```
+
+
+## Counting Documents
+
+Use `db.collection.countDocuments()` to count the number of documents that match a query.
+
+Syntax:
+`db.collection.countDocuments( <query>, <options> )`
+```js
+db.trips.countDocuments({ tripduration: { $gt: 120 }, usertype: "Subscriber" })
+```
+
+<details>
+
+<summary>
+Here is a good example
+</summary>
+
+
+Find the data in the sales collection on sales to customers less than 30 years old where the customer satisfaction rating is greater than three. Return only the customer's age and satisfaction rating, the sale date, and the store location.
+```js
+db.sales.find({"customer.age": {$lt: 30}, "customer.satisfaction":{$gt:3}},{storeLocation: 1, saleDate: 1, "customer.age":1, "customer.satisfaction":1, _id: 0})
+```
+
+</details>
